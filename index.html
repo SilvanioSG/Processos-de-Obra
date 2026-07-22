@@ -51,7 +51,7 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        /* ===== CABEÇARIO ===== */
+        /* ===== CABEÇALHO ===== */
         .header {
             background: var(--primary);
             color: var(--white);
@@ -62,10 +62,33 @@
             justify-content: space-between;
             gap: 1rem;
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-            position: sticky;
+            /* sticky apenas em desktop (aplicado via media query) */
             top: 0;
             z-index: 100;
         }
+        /* Em telas maiores que 768px, o cabeçalho fica fixo */
+        @media (min-width: 769px) {
+            .header {
+                position: sticky;
+            }
+            .nav-bar {
+                position: sticky;
+                top: 0;
+                z-index: 99;
+            }
+        }
+        /* Em telas menores, o cabeçalho rola normalmente */
+        @media (max-width: 768px) {
+            .header {
+                position: relative;
+            }
+            .nav-bar {
+                position: relative;
+                top: auto;
+                z-index: auto;
+            }
+        }
+
         .header-left {
             display: flex;
             align-items: center;
@@ -140,9 +163,6 @@
             flex-wrap: wrap;
             gap: 0.3rem 0.8rem;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 99;
             box-shadow: var(--shadow-sm);
         }
         .nav-bar a {
@@ -534,6 +554,11 @@
             gap: 0.5rem 1.5rem;
             margin-bottom: 0.6rem;
         }
+        .footer .footer-slogan {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            letter-spacing: 0.3px;
+        }
         /* ===== RESPONSIVO ===== */
         @media (max-width: 900px) {
             .header {
@@ -589,6 +614,14 @@
             .grid-3col {
                 grid-template-columns: 1fr;
             }
+            /* Ajuste para formulários em telas pequenas */
+            .form-field .field-line {
+                min-width: 120px;
+                display: inline-block;
+            }
+            .form-field {
+                padding: 0.8rem 1rem;
+            }
         }
         @media (max-width: 500px) {
             .header-photo {
@@ -597,6 +630,9 @@
             }
             .header-title-group .title-main {
                 font-size: 1.1rem;
+            }
+            .header-title-group .title-sub {
+                font-size: 0.75rem;
             }
             .table-wrap table,
             .checklist-table {
@@ -610,7 +646,11 @@
                 padding: 0.4rem 0.5rem;
             }
             .form-field .field-line {
-                min-width: 120px;
+                min-width: 100px;
+            }
+            .nav-bar a {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.4rem;
             }
         }
         @media print {
@@ -658,7 +698,7 @@
 </head>
 <body>
 
-    <!-- ===== CABEÇARIO ===== -->
+    <!-- ===== CABEÇALHO ===== -->
     <header class="header" id="topo">
         <div class="header-left">
             <img class="header-photo" src="Gestão_SG.png" alt="Silvanio Gois" loading="lazy" />
@@ -795,12 +835,7 @@
             </div>
         </section>
 
-        <!-- ===== VIABILIDADE, PLANEJAMENTO, TERRAPLENAGEM, FUNDAÇÕES, ESTRUTURA, ALVENARIA, INSTALAÇÕES, ACABAMENTOS ===== -->
-        <!-- (Mantido o mesmo conteúdo das seções anteriores, já com todas as melhorias) -->
-        <!-- Por brevidade, incluirei apenas o restante das seções de forma resumida, mas o código completo deve ser copiado da resposta anterior. -->
-        <!-- Vou continuar com as seções já existentes e adicionar as novas seções (NBR 15575, Permissão, Investigação, Glossário) -->
-
-        <!-- ================================================== VIABILIDADE ================================================== -->
+        <!-- ===== VIABILIDADE ===== -->
         <section class="section" id="viabilidade">
             <div class="section-header">
                 <i class="fas fa-drafting-compass"></i>
@@ -1299,8 +1334,8 @@
                 <i class="fas fa-globe"></i> ir ao Site
             </a>
         </div>
-        <div style="font-size:0.8rem;opacity:0.6;">
-            <i class="fas fa-code"></i> Da estratégia à operação, conectando, processos, pessoas e resultados
+        <div class="footer-slogan">
+            Da estratégia à operação, conectando processos, pessoas e resultados
         </div>
     </footer>
 
